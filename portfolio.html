@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Nimbalkar - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #374151;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-brand {
+            font-family: 'Pacifico', serif;
+            font-size: 1.5rem;
+            color: #06b6d4;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #06b6d4;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 1400;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #06b6d4;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: #d1d5db;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .hero-btn {
+            background: linear-gradient(to right, #06b6d4, #3b82f6);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-weight: 600;
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: #111827;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .square-img {
+            width: 200px;       
+            height:300px;     
+            object-fit: cover;  
+            border-radius: 0; 
+             border: 4px solid #06b6d4;
+             box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3); 
+        }
+
+        .profile-img {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            border: 4px solid #06b6d4;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .text-cyan {
+            color: #06b6d4;
+        }
+
+        .about-text {
+            color: #d1d5db;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Modules Section */
+        .modules {
+            padding: 5rem 0;
+            background-color: #0f172a;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .module-card {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #06b6d4;
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.3);
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .module-card:hover::before {
+            left: 100%;
+        }
+
+        .module-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, #06b6d4, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-description {
+            color: #d1d5db;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-badge {
+            background: rgba(6, 182, 212, 0.2);
+            color: #06b6d4;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 5rem 0;
+            background-color: #1f2937;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: #374151;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: #06b6d4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 0;
+            background-color: #111827;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: #1f2937;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #06b6d4;
+        }
+
+        .project-description {
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: #06b6d4;
+            color: #111827;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .project-link {
+            color: #06b6d4;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: #1f2937;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: #374151;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: #06b6d4;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for module cards */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .module-card:nth-child(odd) {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .module-card:nth-child(even) {
+            animation: float 6s ease-in-out infinite reverse;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">OM</div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#modules" class="nav-link">Modules</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content"><br><br>
+            <h1 class="hero-title">OM NIMBALKAR</h1>
+            <p class="hero-subtitle">2nd Year IT Student | FABLAB Member</p>
+            <p><img src="c:\Users\LOQ\OneDrive\Desktop\bg yellow om img.jpg" alt="om nimbalkar" class="square-img">
+            <p class="hero-description"><br><br>
+                PASSIONATE ABOUT TECNOLOGY AND INNOVATION,EXPORING THE ENDLESS POSSIBILITIES OF "IT THROUGH HAND-ON PROJECTS" AND "CREATIVE PROBLEM-SOLVING" AT "FABLAB"
+          <br>
+          <br>
+          <br> <button class="hero-btn" onclick="scrollToSection('projects')">Explore My Work</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="c:\Users\LOQ\OneDrive\Desktop\om image.jpg" alt="Om Nimbalkar" class="profile-img">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-title">About <span class="text-cyan">Me</span></h2>
+                    <p class="about-text">
+                        Hello! I'm Om Nimbalkar, a Passionate 2nd-year IT Student With a Deep Curiosity For Technology and Innovation. As an Active Member of FABLAB, I Enjoy Working On Hands-On Projects That Challenge My Problem-Solving Skills.
+                    </p>
+                    <p class="about-text">
+                        My Journey in Technology has Been Driven by a Desire to Create Meaningful solutions and Explore the Endless Possibilities that IT Offers. I'm Constantly Learning New Technologies and Applying them to Real-World Problems.
+                    </p>
+                    <p class="about-text">
+                        When I'm not coding or working on projects, you can find me exploring new frameworks, participating in tech communities, or brainstorming innovative ideas with fellow students.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="modules">
+        <div class="container">
+            <h2 class="section-title">Learning <span class="text-cyan">Modules</span></h2>
+            <p class="about-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                Explore the diverse technology domains I'm actively learning and working with through hands-on projects and practical applications.
+            </p>
+            
+            <div class="modules-grid">
+                <div class="module-card" onclick="showModuleDetails('web-dev')">
+                    <div class="module-icon">🌐</div>
+                    <h3 class="module-title">Web Development</h3>
+                    <p class="module-description">
+                        Building responsive and dynamic websites using modern web technologies and frameworks.
+                    </p>
+                    <div class="module-skills">
+                        <span class="skill-badge">HTML5</span>
+                        <span class="skill-badge">CSS3</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">React</span>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showModuleDetails('cad')">
+                    <div class="module-icon">📐</div>
+                    <h3 class="module-title">CAD</h3>
+                    <p class="module-description">
+                        Computer-Aided Design for creating precise 2D and 3D models for engineering applications.
+                    </p>
+                    <div class="module-skills">
+                        <span class="skill-badge">AutoCAD</span>
+                        <span class="skill-badge">SolidWorks</span>
+                        <span class="skill-badge">Fusion 360</span>
+                        <span class="skill-badge">SketchUp</span>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showModuleDetails('cac')">
+                    <div class="module-icon">🔧</div>
+                    <h3 class="module-title">CAC</h3>
+                    <p class="module-description">
+                        Computer-Aided Construction focusing on digital fabrication and manufacturing processes.
+                    </p>
+                    <div class="module-skills">
+                        <span class="skill-badge">CNC</span>
+                        <span class="skill-badge">Laser Cutting</span>
+                        <span class="skill-badge">CAM</span>
+                        <span class="skill-badge">G-Code</span>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showModuleDetails('3d-printing')">
+                    <div class="module-icon">🖨️</div>
+                    <h3 class="module-title">3D Printing</h3>
+                    <p class="module-description">
+                        Additive manufacturing techniques for prototyping and creating complex geometries.
+                    </p>
+                    <div class="module-skills">
+                        <span class="skill-badge">FDM</span>
+                        <span class="skill-badge">SLA</span>
+                        <span class="skill-badge">Cura</span>
+                        <span class="skill-badge">PrusaSlicer</span>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showModuleDetails('pcb')">
+                    <div class="module-icon">⚡</div>
+                    <h3 class="module-title">PCB Design</h3>
+                    <p class="module-description">
+                        Designing and manufacturing printed circuit boards for electronic projects and systems.
+                    </p>
+                    <div class="module-skills">
+                        <span class="skill-badge">KiCad</span>
+                        <span class="skill-badge">Eagle</span>
+                        <span class="skill-badge">Altium</span>
+                        <span class="skill-badge">Proteus</span>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showModuleDetails('iot')">
+                    <div class="module-icon">🌍</div>
+                    <h3 class="module-title">IoT</h3>
+                    <p class="module-description">
+                        Internet of Things development for connected devices and smart systems integration.
+                    </p>
+                    <div class="module-skills">
+                        <span class="skill-badge">Arduino</span>
+                        <span class="skill-badge">ESP32</span>
+                        <span class="skill-badge">Raspberry Pi</span>
+                        <span class="skill-badge">MQTT</span>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showModuleDetails('java')">
+                    <div class="module-icon">☕</div>
+                    <h3 class="module-title">Java</h3>
+                    <p class="module-description">
+                        Object-oriented programming with Java for building robust applications and systems.
+                    </p>
+                    <div class="module-skills">
+                        <span class="skill-badge">Core Java</span>
+                        <span class="skill-badge">Spring Boot</span>
+                        <span class="skill-badge">Hibernate</span>
+                        <span class="skill-badge">Maven</span>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showModuleDetails('networking')">
+                    <div class="module-icon">🔗</div>
+                    <h3 class="module-title">Networking</h3>
+                    <p class="module-description">
+                        Computer networks, protocols, and infrastructure for reliable data communication.
+                    </p>
+                    <div class="module-skills">
+                        <span class="skill-badge">TCP/IP</span>
+                        <span class="skill-badge">Cisco</span>
+                        <span class="skill-badge">Linux</span>
+                        <span class="skill-badge">Security</span>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showModuleDetails('ai-ml')">
+                    <div class="module-icon">🤖</div>
+                    <h3 class="module-title">AI/ML</h3>
+                    <p class="module-description">
+                        Artificial Intelligence and Machine Learning for intelligent data-driven solutions.
+                    </p>
+                    <div class="module-skills">
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">TensorFlow</span>
+                        <span class="skill-badge">Scikit-learn</span>
+                        <span class="skill-badge">Pandas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">My <span class="text-cyan">Skills</span></h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Web Development</h3>
+                    <p>HTML, CSS.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🐍</div>
+                    <h3>Programming</h3>
+                    <p> basic Java, basic Python C++</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Excel World</h3>
+                    <p>Powerpoint,Canva</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3>Tools & Tech</h3>
+                    <p>Git, Linux,Linkedln </p>
+                </div>
+                 <div class="skill-card">
+                    <div class="skill-icon">🧞‍♂️</div>
+                    <h3>soft skills</h3>
+                    <p>leaderships,event managment,Team collaboration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">My <span class="text-cyan">Projects</span></h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Web Application" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">Portfolio Website</h3>
+                        <p class="project-description">
+                            A responsive portfolio website built with modern web technologies, showcasing my skills and projects.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Data Analysis" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">Data Analytics Dashboard</h3>
+                        <p class="project-description">
+                            An interactive dashboard for data visualization and analysis using Python and modern libraries.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Plotly</span>
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mobile App" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">FABLAB Project Manager</h3>
+                        <p class="project-description">
+                            A project management tool designed specifically for FABLAB members to track and collaborate on projects.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Get In <span class="text-cyan">Touch</span></h2>
+                <p class="about-text">
+                    I'm always open to discussing new opportunities, collaborations, or just having a chat about technology!
+                </p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>📧 Email</h3>
+                       <a href="mailto:omnimbalkar2006@gmail.com">omnnimbalkar2006@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>💼 LinkedIn</h3>
+                      <a href="https://www.linkedin.com/in/om-nimbalkar-25712b32a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">linkedin.com/in/omnimbalka</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>🐱 GitHub</h3>
+                        <a href="https://github.com/nimbalkarom/NEW-PORTFOLIO">github.com/omnimbalka</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>⏹️instagram</h3>
+                        <a href="https://www.instagram.com/_bappu._vibes?igsh=cnd3ZjlvZGJtdm52">Bappu_Vibes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+
+        // Module interaction function
+        function showModuleDetails(moduleId) {
+            const moduleNames = {
+                'web-dev': 'Web Development',
+                'cad': 'Computer-Aided Design',
+                'cac': 'Computer-Aided Construction',
+                '3d-printing': '3D Printing',
+                'pcb': 'PCB Design',
+                'iot': 'Internet of Things',
+                'java': 'Java Programming',
+                'networking': 'Computer Networking',
+                'ai-ml': 'Artificial Intelligence & Machine Learning'
+            };
+            
+            alert(`You clicked on ${moduleNames[moduleId]} module! This could link to detailed projects or learning resources.`);
+        }
+
+        // Add entrance animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe module cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const moduleCards = document.querySelectorAll('.module-card');
+            moduleCards.forEach((card, index) => {
+                card.style.opacity
